@@ -1,8 +1,5 @@
 import urmom
 from flask import Flask, render_template, request
-import tensorflow as tf
-import numpy as np
-import json
 
 app = Flask(__name__, static_folder='static')
 
@@ -11,7 +8,7 @@ def index():
     # Main website
     return render_template('index.html')
 
-@app.route('/predict', methods=['POST'])
+@app.route('/predict', methods=['POST', 'GET'])
 def predict():
     pregnancies = int(request.form['pregnancies'])
     glucose = int(request.form['glucose'])
@@ -23,15 +20,14 @@ def predict():
     age = int(request.form['age'])
 
     submittedInfoMessage = f'''
-        <h1>Submitted Information:</h1>
-        <p>Pregnancies: {pregnancies}</p>
-        <p>Glucose: {glucose}</p>
-        <p>Blood Pressure: {blood_pressure}</p>
-        <p>Skin Thickness: {skin_thickness}</p>
-        <p>Insulin: {insulin}</p>
-        <p>BMI: {bmi}</p>
-        <p>Diabetes Pedigree Function: {diabetes_pedigree_function}</p>
-        <p>Age: {age}</p>
+        <p class="u-text u-text-5">Pregnancies: {pregnancies}</p>
+        <p class="u-text u-text-5">Glucose: {glucose}</p>
+        <p class="u-text u-text-5">Blood Pressure: {blood_pressure}</p>
+        <p class="u-text u-text-5">Skin Thickness: {skin_thickness}</p>
+        <p class="u-text u-text-5">Insulin: {insulin}</p>
+        <p class="u-text u-text-5">BMI: {bmi}</p>
+        <p class="u-text u-text-5">Diabetes Pedigree Function: {diabetes_pedigree_function}</p>
+        <p class="u-text u-text-5">Age: {age}</p>
     '''
     
     userSubmittedInfo = [pregnancies, glucose, skin_thickness, insulin, bmi, diabetes_pedigree_function, age]
