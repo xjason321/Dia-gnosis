@@ -1,4 +1,4 @@
-import urmom
+import functions
 from flask import Flask, render_template, request
 
 app = Flask(__name__, static_folder='static')
@@ -31,7 +31,7 @@ def predict():
     
     userSubmittedInfo = [pregnancies, glucose, blood_pressure, skin_thickness, insulin, bmi, diabetes_pedigree_function, age]
 
-    prediction, percentprob = urmom.ai_predict(userSubmittedInfo)
+    prediction, percentprob = functions.ai_predict(userSubmittedInfo)
     percentprob = (str(round(percentprob, 2)) + "%") # format to two decimals
 
     if prediction == "Diabetes Positive":
