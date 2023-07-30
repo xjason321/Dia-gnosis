@@ -10,14 +10,9 @@ df = pd.read_csv('Neural_Network/diabetes.csv', delimiter=",")
 X = df.drop('Outcome', axis=1)
 y = df['Outcome']
 
-X.div({'Pregnancies': 17,'Glucose': 199,'BloodPressure': 122 ,'SkinThickness':99,'Insulin':846,'BMI':67.1,'DiabetesPedigreeFunction':2.42,'Age':81})
-for i in X:
-    for f in range(len(X[i])):
-        if X[i][f] >= 1.0:
-            X[i][f] = 1.0
-        print(X[i][f])
+scaler = StandardScaler()
 
-
+X = scaler.fit_transform(X)
 print(X)
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
