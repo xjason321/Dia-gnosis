@@ -5,7 +5,6 @@ app = Flask(__name__, static_folder='static')
 
 @app.route('/')
 def index():
-    # Main website
     return render_template('index.html')
 
 @app.route('/predict', methods=['POST', 'GET'])
