@@ -32,10 +32,8 @@ def predict():
     
     userSubmittedInfo = [pregnancies, glucose, blood_pressure, skin_thickness, insulin, bmi, diabetes_pedigree_function, age]
 
-    print(userSubmittedInfo)
-
     prediction, percentprob = urmom.ai_predict(userSubmittedInfo)
-    percentprob = (str(round(percentprob, 2)) + "%")
+    percentprob = (str(round(percentprob, 2)) + "%") # format to two decimals
 
     if prediction == "Diabetes Positive":
         prediction_message = "Patient with entered information might have a risk of diabetes. It might be a good idea to perform tests to double-check."

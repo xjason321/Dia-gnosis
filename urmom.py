@@ -33,7 +33,6 @@ def ai_predict(userInputtedData):
 
     percentprob = (loaded_model.predict([userInputtedData])[0][0]) * 100
 
-    print(percentprob)
 
     if percentprob >= 50.0:
         prediction = 'Diabetes Positive'
