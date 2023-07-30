@@ -7,8 +7,6 @@
     <title>Diagnosis - DiaDetect</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='predict_nicepage.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='predict.css') }}">
-    <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
-    <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
     <meta name="generator" content="Nicepage 5.12.7, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
 
@@ -23,16 +21,16 @@
       </div></header>
     <section class="u-clearfix u-palette-1-dark-2 u-section-1" id="sec-2a9f">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <img class="u-image u-image-default u-preserve-proportions u-image-1" src="images/1-American-Diabetes-Alert-Day.jpg" alt="" data-image-width="1200" data-image-height="1200">
+        <img class="u-image u-image-default u-preserve-proportions u-image-1" src="static/images/1-American-Diabetes-Alert-Day.jpg" alt="" data-image-width="1200" data-image-height="1200">
         <h3 class="u-text u-text-1">Dia-Detect's Diagnosis:</h3>
         {% if prediction == "Diabetes Positive" %}
           <h5 class="u-text u-text-2"><span style="color:tomato;">{{ prediction }}</span></h5>
-          <h5 class="u-text u-text-2">{{ percentprob }} Confidence of Diabetes.</h5>
+          <h5 class="u-text u-text-2">{{ percentprob }} Probability of Diabetes.</h5>
         {% else %}
-          <h5 class="u-text u-text-2"><span style="color:green;">{{ prediction }}</span>, {{ percentprob }} Confidence.</h5>
-          <h5 class="u-text u-text-2">{{ percentprob }} Confidence of Diabetes.</h5>
+          <h5 class="u-text u-text-2"><span style="color:green;">{{ prediction }}</span></h5>
+          <h5 class="u-text u-text-2">{{ percentprob }} Probability of Diabetes.</h5>
         {% endif %}
-        <p class="u-text u-text-3">{{ predictionMsg }}</p>
+        <p class="u-text u-text-3"><i>{{ predictionMsg }}</i></p>
         <h3 class="u-text u-text-default u-text-4">Submitted Information:</h3>
         <p class="u-text u-text-5">{{ submittedInfoMessage | safe }}</p>
       </div>
