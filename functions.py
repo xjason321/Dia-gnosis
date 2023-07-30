@@ -68,6 +68,5 @@ def fillcsv(csvfile):
         with open('file_uploads/predicted.csv', 'w', newline='') as f:
             writer = csv.writer(f)
             writer.writerows(rows)        
-fillcsv('Neural_Network/diabtest.csv')
 
 
