@@ -1,44 +1,49 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Rune AI</title>
+    <title>DiaDetect</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </head>
 <body>
-    <h1>Rune AI</h1>
-    <p>A program that uses machine learning to identify a letter from a drawing.</p>
-    <p><i>By Jason Xie</i></p>
+    <h1>DiaDetect</h1>
+    <p>A program that diagnoses diabetes from given information.</p>
+    <p><i>By Subhash Srinivasa, Jason Xie, Komal Tummala</i></p>
+    <h1>Diabetes Prediction Form</h1>
+    
+    <form action="/predict" method="post">
+        <label for="pregnancies">Pregnancies:</label>
+        <input type="number" id="pregnancies" name="pregnancies" required><br>
+        <p><i>Number of times pregnant.</i></p>
 
-    <div class="row">
-        <div class="column left">
-            <div id="pixel-grid">
-                {% for row in range(28) %}
-                    <div class=row>
-                        {% for col in range(28) %}
-                            <div class="pixel" id="pixel-{{ row }}-{{ col }}" onclick="togglePixelColor(this)"></div>
-                        {% endfor %}
-                    </div>
-                {% endfor %}
-            </div>
-            <button class="blue" onclick="clearPixels()">Clear</button>
-            <button class="green" onclick="savePixels()">Activate Rune AI</button>
-        </div>
+        <label for="glucose">Glucose:</label>
+        <input type="number" id="glucose" name="glucose" required><br>
+        <p><i>Plasma glucose concentration a 2 hours in an oral glucose tolerance test.</i></p>
 
-        <div class="column right">
-            <p><u>Predictions:</u></p>
-            <p><b>{{m1}}</b></p>
-            <p><b>{{m2}}</b></p>
-            <p>{{m3}}</p>
-            <p>{{m4}}</p>
-            <p>{{m5}}</p>
-            <br>
-            <p>* * *</p>
-            <p><i>Don't be mean to the AI;</i></p>
-            <p><i>if your letter is in the top three,</i></p>
-            <p><i>that's good enough. c:</i></p>
-            <p>* * *</p>
-        </div>
-    </div>
+        <label for="bloodPressure">Blood Pressure:</label>
+        <input type="number" id="bloodPressure" name="bloodPressure" required><br>
+        <p><i>Diastolic blood pressure (mm Hg).</i></p>
+
+        <label for="skinThickness">Skin Thickness:</label>
+        <input type="number" id="skinThickness" name="skinThickness" required><br>
+        <p><i>Triceps skin fold thickness (mm).</i></p>
+
+        <label for="insulin">Insulin:</label>
+        <input type="number" id="insulin" name="insulin" required><br>
+        <p><i>2-Hour serum insulin (mu U/ml).</i></p>
+
+        <label for="bmi">BMI:</label>
+        <input type="number" id="bmi" name="bmi" step="0.01" required><br>
+        <p><i>Body mass index (weight in kg/(height in m)^2).</i></p>
+
+        <label for="diabetesPedigreeFunction">Diabetes Pedigree Function:</label>
+        <input type="number" id="diabetesPedigreeFunction" name="diabetesPedigreeFunction" step="0.001" required><br>
+        <p><i>Diabetes pedigree function.</i></p>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required><br>
+        <p><i>Age (years).</i></p>
+
+        <input type="submit" value="Submit">
+    </form>
 </body>
 </html>

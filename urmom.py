@@ -4,7 +4,7 @@ import numpy as np
 from sklearn.preprocessing import StandardScaler
 import csv
 
-def predict(userInputtedData):
+def ai_predict(userInputtedData):
     ori = pd.read_csv('Neural_Network/diabetes.csv', delimiter=",")
 
     loaded_model = tf.keras.models.load_model('Neural_Network/diabetes_identifier.h5')

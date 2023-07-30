@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DiaDetect</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>DiaDetect</h1>
+    <p>A program that diagnoses diabetes from given information.</p>
+    <p><i>By Subhash Srinivasa, Jason Xie, Komal Tummala</i></p>
+    <h1>Diabetes Prediction Form</h1>
+    
+    {{ submittedInfoMessage }}
+
+    <h3>{{ prediction }}</h3>
+</body>
+</html>
