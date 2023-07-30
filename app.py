@@ -30,11 +30,19 @@ def predict():
         <p class="u-text u-text-5">Age: {age}</p>
     '''
     
-    userSubmittedInfo = [pregnancies, glucose, skin_thickness, insulin, bmi, diabetes_pedigree_function, age]
+    userSubmittedInfo = [pregnancies, glucose, blood_pressure, skin_thickness, insulin, bmi, diabetes_pedigree_function, age]
+
+    print(userSubmittedInfo)
 
     prediction, percentprob = urmom.ai_predict(userSubmittedInfo)
+    percentprob = (str(round(percentprob, 2)) + "%")
 
-    return render_template('predict.html', submittedInfoMessage=submittedInfoMessage, prediction=prediction, percentprob=percentprob)
+    if prediction == "Diabetes Positive":
+        prediction_message = "Patient with entered information might have a risk of diabetes. It might be a good idea to perform tests to double-check."
+    else:
+        prediction_message = "Patient with entered information doesn't appear to have a risk of diabetes. However, it still might be a good idea to perform tests to double-check."
+
+    return render_template('predict.html', submittedInfoMessage=submittedInfoMessage, prediction=prediction, percentprob=percentprob, predictionMsg=prediction_message)
 
 if __name__ == '__main__':
     app.run()

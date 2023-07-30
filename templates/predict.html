@@ -25,8 +25,14 @@
       <div class="u-clearfix u-sheet u-sheet-1">
         <img class="u-image u-image-default u-preserve-proportions u-image-1" src="images/1-American-Diabetes-Alert-Day.jpg" alt="" data-image-width="1200" data-image-height="1200">
         <h3 class="u-text u-text-1">Dia-Detect's Diagnosis:</h3>
-        <h5 class="u-text u-text-2">{{ prediction }}, {{ percentprob }}% Confidence.</h5>
-        <p class="u-text u-text-3">There is a high chance that you are at risk for, or already have diabetes. Consult your doctor.</p>
+        {% if prediction == "Diabetes Positive" %}
+          <h5 class="u-text u-text-2"><span style="color:tomato;">{{ prediction }}</span></h5>
+          <h5 class="u-text u-text-2">{{ percentprob }} Confidence of Diabetes.</h5>
+        {% else %}
+          <h5 class="u-text u-text-2"><span style="color:green;">{{ prediction }}</span>, {{ percentprob }} Confidence.</h5>
+          <h5 class="u-text u-text-2">{{ percentprob }} Confidence of Diabetes.</h5>
+        {% endif %}
+        <p class="u-text u-text-3">{{ predictionMsg }}</p>
         <h3 class="u-text u-text-default u-text-4">Submitted Information:</h3>
         <p class="u-text u-text-5">{{ submittedInfoMessage | safe }}</p>
       </div>

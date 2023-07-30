@@ -4,7 +4,7 @@ import numpy as np
 from sklearn.preprocessing import StandardScaler
 import csv
 
-def ai_predict(userInputtedData):
+def ai_predict(userInputtedData):    
     ori = pd.read_csv('Neural_Network/diabetes.csv', delimiter=",")
 
     loaded_model = tf.keras.models.load_model('Neural_Network/diabetes_identifier.h5')
@@ -25,16 +25,15 @@ def ai_predict(userInputtedData):
 
     userInputtedData = np.array([X[-1]])
 
-    print(userInputtedData)
-    print(X[0])
-
     # df = df.drop(df.tail(1).index,inplace=True)
         
     ori.to_csv('Neural_Network/diabetes.csv', index=False)    
 
     # formatted = pd.DataFrame({'Pregnancies,Glucose,BloodPressure,SkinThickness,Insulin,BMI,DiabetesPedigreeFunction,Age,Outcome'})
 
-    percentprob = (loaded_model.predict([userInputtedData]) [0][0]) * 100
+    percentprob = (loaded_model.predict([userInputtedData])[0][0]) * 100
+
+    print(percentprob)
 
     if percentprob >= 50.0:
         prediction = 'Diabetes Positive'
@@ -42,3 +41,6 @@ def ai_predict(userInputtedData):
         prediction = 'Diabetes Negative'
 
     return prediction, percentprob
+
+
+ai_predict([5,166,72,19,175,25.8,0.587,51,1])
