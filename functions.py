@@ -65,6 +65,6 @@ def fillcsv(csvfile):
             row.append(round(percentprob, 2))
         with open('static/file_uploads/predicted.csv', 'w', newline='') as f:
             writer = csv.writer(f)
-            writer.writerows(rows)    
+            writer.writerows(rows)      
 
 
