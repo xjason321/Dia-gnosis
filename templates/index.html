@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='nicepage.css') }}">
     <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
     <meta name="generator" content="Nicepage 5.12.7, nicepage.com">
     <meta name="referrer" content="origin">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
@@ -204,10 +205,22 @@
               <input class="u-active-palette-5-dark-2 u-border-none u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-5-dark-2 u-palette-3-light-1 u-radius-32 u-btn-1" type="submit" value="submit" class="u-form-control-hidden u-grey-5">
             </div>
           </form>
+
+          <form action="{{ url_for('upload')}}" method="POST" enctype="multipart/form-data">
+            <h3 class="u-text u-text-2">Or, upload a csv for us instead.</h3>
+            {% if not filename %}
+            <div id="uploadImage">
+              <p class="u-text u-text-2">Upload your CSV file here:</p>
+              <br>
+              <input type="file" id="myFile" class="csvUpload" name="csvUpload">
+              <input type="submit" class="u-grey-80" value="Upload">
+            </div>
+            {% endif %}
+          </form>
+
         </div>
       </div>
     </section>
-    
     
     <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-50da"><div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
         <p class="u-small-text u-text u-text-variant u-text-1">Dia-Detect and its creators are not liable for any false medical advice given to its users.&nbsp;<br>They are clearly stated to be mere predictions which can be followed up on.

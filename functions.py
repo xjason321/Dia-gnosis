@@ -42,17 +42,15 @@ def ai_predict(userInputtedData):
     return prediction, percentprob
 
 def fillcsv(csvfile):
-    f = open("file_uploads/predicted.csv", "w")
+    f = open("static/file_uploads/predicted.csv", "w")
     f.truncate()
     f.close()
     predictool = tf.keras.models.load_model('Neural_Network/diabetes_identifier.h5')
     ori = pd.read_csv(csvfile, delimiter = ',')
     ori_array = np.array(ori)
-    print(ori_array)
     with open(csvfile, 'r') as f:
         reader = csv.reader(f)
         rows = list(reader)
-    print(ori_array[0])
     for i, row in enumerate(rows):
         if i == 0:
             row.append('Diabetes Prediction')
@@ -65,9 +63,8 @@ def fillcsv(csvfile):
                 prediction = 0
             row.append(prediction)
             row.append(round(percentprob, 2))
-        with open('file_uploads/predicted.csv', 'w', newline='') as f:
+        with open('static/file_uploads/predicted.csv', 'w', newline='') as f:
             writer = csv.writer(f)
-            writer.writerows(rows)        
-fillcsv('Neural_Network/diabtest.csv')
+            writer.writerows(rows)    
 
 

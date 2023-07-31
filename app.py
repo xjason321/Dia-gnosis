@@ -1,4 +1,5 @@
 import functions
+import os
 from flask import Flask, render_template, request
 
 app = Flask(__name__, static_folder='static')
@@ -40,6 +41,24 @@ def predict():
         prediction_message = "Patient with entered information doesn't appear to have a risk of diabetes. However, it still might be a good idea to perform tests to double-check."
 
     return render_template('predict.html', submittedInfoMessage=submittedInfoMessage, prediction=prediction, percentprob=percentprob, predictionMsg=prediction_message)
+
+@app.route('/upload', methods=['POST', 'GET'])
+def upload():
+    if 'csvUpload' not in request.files:
+        return 'No file uploaded', 400
+    
+    file = request.files['csvUpload']
+    if file.filename == '':
+        return 'No file selected', 400
+
+    # Save the uploaded file to a specific location
+    file.save('static/file_uploads/' + file.filename)
+
+    functions.fillcsv('static/file_uploads/' + file.filename)
+
+    os.remove('static/file_uploads/' + file.filename)
+
+    return render_template('upload.html')
 
 if __name__ == '__main__':
     app.run()
