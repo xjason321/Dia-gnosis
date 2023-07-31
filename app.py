@@ -1,6 +1,7 @@
 import functions
 import os
 from flask import Flask, render_template, request
+import pandas as pd
 
 app = Flask(__name__, static_folder='static')
 
@@ -58,7 +59,18 @@ def upload():
 
     os.remove('static/file_uploads/' + file.filename)
 
-    return render_template('upload.html')
+    df = pd.read_csv('static/file_uploads/predicted.csv')
+
+    # Convert the DataFrame to HTML
+    html_table = df.to_html(index=False, header=True)
+
+    # Convert the HTML table to the desired format
+    lines = html_table.split('\n')
+    html_output = '\n'.join([f'<p>{line}</p>' for line in lines[:100]])
+
+    print(html_output)
+
+    return render_template('upload.html', df=html_output)
 
 if __name__ == '__main__':
     app.run()
